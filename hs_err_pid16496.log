@@ -1,0 +1,36 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ff8fa5a13f3, pid=16496, tid=19052
+#
+# JRE version: OpenJDK Runtime Environment (15.0.2+7) (build 15.0.2+7-27)
+# Java VM: OpenJDK 64-Bit Server VM (15.0.2+7-27, mixed mode, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# Problematic frame:
+# V  [jvm.dll+0x3513f3]
+#
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -javaagent:C:\Users\funof\AppData\Local\JetBrains\IntelliJ IDEA Community Edition 2020.3.1\lib\idea_rt.jar=56622:C:\Users\funof\AppData\Local\JetBrains\IntelliJ IDEA Community Edition 2020.3.1\bin -Dfile.encoding=UTF-8 pl.familiamed.FamiliaNET.FamiliaNetApplication
+
+Host: Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz, 12 cores, 31G,  Windows 10 , 64 bit Build 19041 (10.0.19041.928)
+Time: Fri May 28 02:58:49 2021 Œrodkowoeuropejski czas letni elapsed time: 40762.969578 seconds (0d 11h 19m 22s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000028a1c68fb90):  JavaThread "HikariPool-1 connection adder" daemon [_thread_in_vm, id=19052, stack(0x000000e54b900000,0x000000e54ba00000)]
+
+Stack: [0x000000e54b900000,0x000000e54ba00000],  sp=0x000000e54b9ff390,  free space=1020k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x3513f3]
+V  [jvm.dll+0x62adc2]
+V  [jvm.dll+0x351ed1]
+V  [jvm.dll+0x352167]
+V  [jvm.dll+0x3da791]
+V  [jvm.dll+0x74495d]
+V  [jvm.dll+0x73d75a]
