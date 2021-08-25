@@ -45,5 +45,9 @@ public class UserService {
                 .orElseThrow( ()->  new IllegalArgumentException(String.format("Couldn't find user with id", id)));
         userRepository.delete(user);
     }
+
+    public  User findByName (String name ){
+        return userRepository.findByName(name);
+    }
 }
 

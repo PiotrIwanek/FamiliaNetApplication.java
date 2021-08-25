@@ -1,21 +1,24 @@
-
-
 version: '3'
 
 services:
-  docker-mysql:
-    image: mysql
+  mysqldb:
+    image: mysql:8
     environment:
-      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=familianetdb
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
     ports:
       - 3307:3306
 
-  app:
-    image: app:latest
+  familianet:
+    image: familianet
     ports:
-      - 8091:8091
+       - 8091:8091
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/familianetdb?serverTimezone=UTC&useUnicode=yes&characterEncoding=UTF-8
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/familianetdb?autoReconnect=true&useSSL=false
     depends_on:
-      - mysql
+       - mysqldb
+
+networks:
+  familiamed-mysql: 

@@ -18,7 +18,7 @@ public class PostDTO {
   private String name;
   private LocalDateTime dateTime;
 
-  private Prioryty priority;
+  private String priority;
 
   private String main;
 
@@ -28,7 +28,7 @@ public class PostDTO {
 
   private List<String> userNames;
 
-  public PostDTO(long id, String name, LocalDateTime dateTime, Prioryty priority, String main, Category category
+  public PostDTO(long id, String name, LocalDateTime dateTime, String priority, String main, Category category
       , List<FileDTO> fileDTOList, List<String> userNames) {
 
     this.id = id;

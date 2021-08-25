@@ -1,5 +1,4 @@
-FROM amazoncorretto:11.0.4
-VOLUME /tmp
-ARG JAR_FILE
-COPY ${JAR_FILE} FamiliaNET.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/FamiliaNET.jar"]
+From openjdk:11
+COPY ./target/familianet-0.0.1-SNAPSHOT.jar familianet-0.0.1-SNAPSHOT.jar
+EXPOSE 8080:8090
+CMD ["java","-jar","familianet-0.0.1-SNAPSHOT.jar"]

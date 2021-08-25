@@ -44,7 +44,7 @@ public class PostController {
             .toUriString();
                 return  new FileDTO(fileDB.getId() , fileDB.getName(), fileDB.getType() , fileUrl , fileDB.getSize());}).collect(
                 Collectors.toList());
-            return new PostDTO(post.getId(), post.getName(), post.getDateTime(), post.getPriority(), post.getMain(),
+            return new PostDTO(post.getId(), post.getName(), post.getDateTime(), post.getPriority().toString(), post.getMain(),
       post.getCategory(), fileDTOList , post.getUserNames());}).collect(Collectors.toList());
 
         return ResponseEntity.ok(postDTOList);
@@ -62,7 +62,7 @@ public class PostController {
                     .toUriString();
                 return  new FileDTO(fileDB.getId() , fileDB.getName(), fileDB.getType() , fileUrl , fileDB.getSize());}).collect(
                 Collectors.toList());
-            return new PostDTO(post.getId(), post.getName(), post.getDateTime(), post.getPriority(), post.getMain(),
+            return new PostDTO(post.getId(), post.getName(), post.getDateTime(), post.getPriority().toString(), post.getMain(),
                 post.getCategory(), fileDTOList , post.getUserNames());}).collect(Collectors.toList());
 
         return ResponseEntity.ok(postDTOList);
