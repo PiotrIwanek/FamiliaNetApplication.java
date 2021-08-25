@@ -1,10 +1,10 @@
 package pl.familiamed.FamiliaNET.controller;
 
-import java.sql.SQLOutput;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.familiamed.FamiliaNET.model.User;
@@ -18,7 +18,7 @@ public class LoginController {
 
   private final UserService userService;
 
-  @GetMapping
+  @PostMapping
   public User login (String name , String password){
     User user = null;
     try {
