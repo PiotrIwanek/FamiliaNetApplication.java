@@ -31,7 +31,7 @@ public class LoginController {
       throw new DataAccessException("Nie znaleziono użytkownika") {
       };
     }else{
-      if( password == user.getPassword() ){
+      if( password.equals(user.getPassword())){
         return user;
       }else {
         throw new DataAccessException("Nieprawidłowe hasło"){};
