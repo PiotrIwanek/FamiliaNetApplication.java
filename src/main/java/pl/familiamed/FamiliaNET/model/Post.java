@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import pl.familiamed.FamiliaNET.model.enums.Prioryty;
 
 
@@ -29,7 +30,7 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private Prioryty priority;
 
-    @Column(columnDefinition = "TEXT")
+    @Type(type="text")
     private String main;
 
     @OneToOne
