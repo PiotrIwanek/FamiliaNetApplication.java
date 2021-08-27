@@ -30,7 +30,7 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private Prioryty priority;
 
-    @Type(type="text")
+    @Column(columnDefinition="text")
     private String main;
 
     @OneToOne
