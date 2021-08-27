@@ -29,6 +29,7 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private Prioryty priority;
 
+    @Column(columnDefinition = "TEXT")
     private String main;
 
     @OneToOne
