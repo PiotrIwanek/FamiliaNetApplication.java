@@ -16,14 +16,16 @@ public class FileDTO {
     private String name;
     private String type;
     private String url;
+    private boolean isUploaded;
     private long size;
 
 
-    public FileDTO(String id, String name, String type, String url, long size){
+    public FileDTO(String id, String name, String type, String url, boolean isUploaded ,  long size){
         this.id = id;
         this.name = name;
         this.type = type;
         this.url = url;
+        this.isUploaded = isUploaded;
         this.size = size;
     }
 
@@ -33,7 +35,7 @@ public class FileDTO {
             .path("/files/")
             .path(fileDB.getName())
             .toUriString();
-        return  new FileDTO(fileDB.getId() , fileDB.getName(), fileDB.getType() , fileUrl , fileDB.getSize());
+        return  new FileDTO(fileDB.getId() , fileDB.getName(), fileDB.getType() , fileUrl , fileDB.isUploaded(), fileDB.getSize());
     }
 
 

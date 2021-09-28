@@ -31,6 +31,8 @@ public class FileDB {
 
   private String type;
 
+  private boolean isUploaded;
+
   @Lob
   private byte[] data;
 

@@ -55,7 +55,7 @@ public class FileDBController {
           .path(dbFile.getId())
           .toUriString();
 
-      return new FileDTO(dbFile.getId(), dbFile.getName(), dbFile.getType(), dbFile.getUrl(), dbFile.getSize());
+      return new FileDTO(dbFile.getId(), dbFile.getName(), dbFile.getType(), dbFile.getUrl(), dbFile.isUploaded(), dbFile.getSize());
     }).collect(Collectors.toList());
 
     return ResponseEntity.status(HttpStatus.OK).body(files);

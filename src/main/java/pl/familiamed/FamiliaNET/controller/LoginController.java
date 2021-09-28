@@ -3,7 +3,6 @@ package pl.familiamed.FamiliaNET.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,15 +18,15 @@ public class LoginController {
   private final UserService userService;
 
   @PostMapping
-  public User login (String name , String password){
+  public User login (String login , String password){
     User user = null;
     try {
-      user = userService.findByName(name);
+      user = userService.findByLogin(login);
     } catch (DataAccessException e){
       throw  new DataAccessException("Niepoprawny login" , e) {
       };
     }
-    if (name == null) {
+    if (login == null) {
       throw new DataAccessException("Nie znaleziono użytkownika") {
       };
     }else{
