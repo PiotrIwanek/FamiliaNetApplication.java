@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -84,8 +85,8 @@ public class PostController {
     return ResponseEntity.ok(PostDTO.fromPost(postService.create(post)));
   }
 
-  @PatchMapping("/addFile")
-  public ResponseEntity<PostDTO> addFile(@RequestParam Long postId, @RequestParam String fileId) {
+  @PutMapping("/addFile/{postId}")
+  public ResponseEntity<PostDTO> addFile(@PathVariable Long postId, @RequestParam String fileId) {
     Post post = postService.getById(postId);
     FileDB fileDB = fileDBService.getFile(fileId);
     post.getFileDBList().add(fileDB);
@@ -94,8 +95,8 @@ public class PostController {
     return ResponseEntity.ok(PostDTO.fromPost(post));
   }
 
-  @PatchMapping("/deleteFile")
-  public ResponseEntity<PostDTO> deleteFile(@RequestParam Long postId, @RequestParam String fileId) {
+  @PutMapping("/deleteFile/{postId}")
+  public ResponseEntity<PostDTO> deleteFile(@PathVariable Long postId, @RequestParam String fileId) {
     Post post = postService.getById(postId);
     FileDB fileDB = fileDBService.getFile(fileId);
 
