@@ -32,8 +32,8 @@ public class FileDTO {
     public  static FileDTO fromFile (FileDB fileDB){
         String fileUrl = ServletUriComponentsBuilder
             .fromCurrentContextPath()
-            .path("/files/")
-            .path(fileDB.getName())
+            .path("/v1/file/")
+            .path(fileDB.getId())
             .toUriString();
         return  new FileDTO(fileDB.getId() , fileDB.getName(), fileDB.getType() , fileUrl , fileDB.isUploaded(), fileDB.getSize());
     }

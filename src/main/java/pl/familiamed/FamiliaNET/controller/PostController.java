@@ -65,7 +65,7 @@ public class PostController {
           List<FileDTO> fileDTOList = post.getFileDBList().stream().map(fileDB -> {
             String fileUrl = ServletUriComponentsBuilder
                 .fromCurrentContextPath()
-                .path("/v1/file/files/")
+                .path("/v1/file/")
                 .path(fileDB.getId())
                 .toUriString();
             return new FileDTO(fileDB.getId(), fileDB.getName(), fileDB.getType(), fileUrl, fileDB.isUploaded(),

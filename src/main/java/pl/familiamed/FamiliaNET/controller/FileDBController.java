@@ -51,17 +51,17 @@ public class FileDBController {
     List<FileDTO> files = fileDBService.getAllFiles().map(dbFile -> {
       String fileDownloadUri = ServletUriComponentsBuilder
           .fromCurrentContextPath()
-          .path("/files/")
+          .path("/v1/file/")
           .path(dbFile.getId())
           .toUriString();
 
-      return new FileDTO(dbFile.getId(), dbFile.getName(), dbFile.getType(), dbFile.getUrl(), dbFile.isUploaded(), dbFile.getSize());
+      return new FileDTO(dbFile.getId(), dbFile.getName(), dbFile.getType(), fileDownloadUri , dbFile.isUploaded(), dbFile.getSize());
     }).collect(Collectors.toList());
 
     return ResponseEntity.status(HttpStatus.OK).body(files);
   }
 
-  @GetMapping("/files/{id}")
+  @GetMapping("/{id}")
   public ResponseEntity<byte[]> getFile(@PathVariable String id) throws IOException {
     FileDB fileDB = fileDBService.getFile(id);
 
