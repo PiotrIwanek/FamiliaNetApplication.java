@@ -45,6 +45,16 @@ public class CategoryController {
     return catService.getCategoryTree();
   }
 
+  @GetMapping("/acreditationCategoryTree")
+  public Category getAcreditationCategoryTree(){
+
+    if ( catService.getSpecificCategory("Akredytacja") == null){
+     return catService.addCategory(null , "Akredytacja");
+    }else {
+      return catService.getSpecificCategory("Akredytacja");
+    }
+  }
+
   @GetMapping("/{id}")
   public ResponseEntity<Category> getById(@PathVariable Long id) {
     return ResponseEntity.ok(catService.getCategoryById(id));

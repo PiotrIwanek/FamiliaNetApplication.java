@@ -1,5 +1,6 @@
 package pl.familiamed.FamiliaNET.services;
 
+import java.io.File;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -18,12 +19,28 @@ public class FileDBService {
 
     private FileDBRepository fileDBRepository;
 
+
     public FileDB store(MultipartFile file) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
         FileDB FileDB = new FileDB("",fileName, file.getContentType(), true ,   file.getBytes(),"" , file.getSize());
         
         return fileDBRepository.save(FileDB);
+    }
+
+    public FileDB storeFileWithName(MultipartFile file, String name) throws IOException {
+
+
+        String fileName = StringUtils.cleanPath(name);
+
+        FileDB FileDB = new FileDB("" ,fileName, file.getContentType(), true ,   file.getBytes(),"" , file.getSize());
+
+        return fileDBRepository.save(FileDB);
+    }
+
+    public FileDB updateFileWithName (MultipartFile file , String name) throws IOException{
+        FileDB fileToUpdate = fileDBRepository.findByName(name);
+        return fileDBRepository.save(new FileDB( fileToUpdate.getId() , fileToUpdate.getName() , file.getContentType() , true , file.getBytes() , "" ,file.getSize()));
     }
 
     public FileDB getFile(String id) {

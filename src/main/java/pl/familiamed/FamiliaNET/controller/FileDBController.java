@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.familiamed.FamiliaNET.api.model.FileDTO;
 import pl.familiamed.FamiliaNET.model.FileDB;
+import pl.familiamed.FamiliaNET.services.ChartFileCounterService;
 import pl.familiamed.FamiliaNET.services.FileDBService;
 
 @RestController
@@ -34,7 +36,7 @@ public class FileDBController {
 
 
   private final FileDBService fileDBService;
-
+  private ChartFileCounterService chartFileCounterService;
 
   @PostMapping
   public ResponseEntity<FileDTO> uploadFile(@RequestParam("file") MultipartFile file) {
@@ -43,6 +45,24 @@ public class FileDBController {
       return ResponseEntity.ok(FileDTO.fromFile(fileDBService.store(file)));
     } catch (Exception e) {
       return ResponseEntity.badRequest().build();
+    }
+  }
+
+
+  @PostMapping("/addChartFile")
+  public ResponseEntity<FileDTO> uploadChartFile (@RequestParam("file") MultipartFile file) {
+    if (fileDBService.getFileByName("chartFile") == null) {
+      try {
+        return ResponseEntity.ok(FileDTO.fromFile(fileDBService.storeFileWithName(file, "chartFile")));
+      } catch (Exception e) {
+        return ResponseEntity.badRequest().build();
+      }
+    } else {
+      try {
+        return ResponseEntity.ok(FileDTO.fromFile(fileDBService.updateFileWithName(file, "chartFile")));
+      } catch (Exception e) {
+        return ResponseEntity.badRequest().build();
+      }
     }
   }
 
@@ -59,6 +79,31 @@ public class FileDBController {
     }).collect(Collectors.toList());
 
     return ResponseEntity.status(HttpStatus.OK).body(files);
+  }
+
+  @GetMapping("/getChartFile")
+  public ResponseEntity<FileDTO> getChartFile(){
+    FileDB fileDB = fileDBService.getFileByName("chartFile");
+    FileDTO fileDTO = FileDTO.fromFile(fileDB);
+    return  ResponseEntity.ok(fileDTO);
+
+  }
+
+
+  @GetMapping("/byName/{name}")
+  public ResponseEntity<byte[]> getChartFile(@PathVariable String name) throws IOException {
+    FileDB fileDB = fileDBService.getFileByName(name);
+
+    HttpHeaders headers = new HttpHeaders();
+
+    headers.setContentType(MediaType.parseMediaType(fileDB.getType()));
+    String filename = fileDB.getName();
+
+    headers.add("content-disposition", "inline;filename=" + filename);
+
+    headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+    ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(fileDB.getData(), headers, HttpStatus.OK);
+    return response;
   }
 
   @GetMapping("/{id}")

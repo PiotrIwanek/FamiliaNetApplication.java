@@ -39,6 +39,11 @@ public class CategoryService {
     return catRepo.findByParentIdIsNull();
   }
 
+  public Category getSpecificCategory(String name){
+    return catRepo.findByNameAndParentIdIsNull(name);
+  }
+
+
   public Category getCategoryTree() {
     return Category.builder().name("Tree").parentId(null).children(this.getAll()).build();
   }
