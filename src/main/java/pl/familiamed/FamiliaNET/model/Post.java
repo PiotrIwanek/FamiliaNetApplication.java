@@ -54,6 +54,10 @@ public class Post {
     @Nullable
     private List<Sign> signs;
 
+    @ManyToMany
+    @Nullable
+    private List<Unit> units;
+
 
 }
 

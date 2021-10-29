@@ -47,13 +47,21 @@ public class CategoryController {
 
   @GetMapping("/acreditationCategoryTree")
   public Category getAcreditationCategoryTree(){
-
     if ( catService.getSpecificCategory("Akredytacja") == null){
      return catService.addCategory(null , "Akredytacja");
     }else {
       return catService.getSpecificCategory("Akredytacja");
     }
   }
+
+//  @GetMapping("/newsCategoryTree")
+//  public Category getNewsCategoryTree(){
+//    if ( catService.getSpecificCategory("News") == null){
+//      return catService.addCategory(null , "News");
+//    }else {
+//      return catService.getSpecificCategory("News");
+//    }
+//  }
 
   @GetMapping("/{id}")
   public ResponseEntity<Category> getById(@PathVariable Long id) {

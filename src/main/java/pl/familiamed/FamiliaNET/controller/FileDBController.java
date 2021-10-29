@@ -41,7 +41,6 @@ public class FileDBController {
   @PostMapping
   public ResponseEntity<FileDTO> uploadFile(@RequestParam("file") MultipartFile file) {
     try {
-      fileDBService.store(file);
       return ResponseEntity.ok(FileDTO.fromFile(fileDBService.store(file)));
     } catch (Exception e) {
       return ResponseEntity.badRequest().build();

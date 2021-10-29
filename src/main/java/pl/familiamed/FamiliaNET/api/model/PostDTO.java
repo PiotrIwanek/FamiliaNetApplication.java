@@ -55,6 +55,10 @@ public class PostDTO {
   }
 
   public static PostDTO fromPost(Post post) {
+    if(post.getPriority() == null){
+      post.setPriority(Prioryty.MEDIUM);
+    }
+
     return new PostDTO(post.getId(), post.getName(), post.getDateTime(), post.getDeadLineDate() ,
         post.isShouldBeSign() , post.getPriority().toString(), post.getMain(), post.getCategory(),
         post.getFileDBList().stream().map(FileDTO::fromFile).collect(Collectors.toList()), post.getUsers(),
