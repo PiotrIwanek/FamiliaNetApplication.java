@@ -25,7 +25,7 @@ public class Event {
   private Long id;
 
   private String title;
-  private Date date;
+  private Date start;
   private String main;
   private String recipient;
   private String backgroundColor;

@@ -31,7 +31,7 @@ public class EventService {
     Event eventToUpdate = eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(String.format("Nie znaleziono zdarzenia : ", id)));
 
     eventToUpdate.setTitle(event.getTitle());
-    eventToUpdate.setDate(event.getDate());
+    eventToUpdate.setStart(event.getStart());
     eventToUpdate.setMain(event.getMain());
     eventToUpdate.setBackgroundColor(event.getBackgroundColor());
 
