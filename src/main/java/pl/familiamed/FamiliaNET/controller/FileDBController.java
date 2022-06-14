@@ -119,6 +119,7 @@ public class FileDBController {
     headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
     ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(fileDB.getData(), headers, HttpStatus.OK);
     return response;
+
   }
 
   @DeleteMapping("/{id}")

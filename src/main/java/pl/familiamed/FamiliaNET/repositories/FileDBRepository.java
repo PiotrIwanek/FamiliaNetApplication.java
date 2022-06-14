@@ -9,4 +9,5 @@ import pl.familiamed.FamiliaNET.model.FileDB;
 public interface FileDBRepository extends JpaRepository<FileDB, String> {
 
   FileDB findByName (String name);
+
 }
